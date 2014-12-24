@@ -26,7 +26,7 @@ func (s *Middleware) ServeHTTP(rw http.ResponseWriter, r *http.Request, next htt
 	next(rw, r)
 
 	// latency in milliseconds
-	latency := int64(time.Since(start) / 1000 / 1000)
+	latency := int64(time.Since(start) / time.Millisecond)
 	res := rw.(negroni.ResponseWriter)
 
 	s.StatsdClient.Inc("requests."+strconv.Itoa(res.Status()), 1, 1.0)
