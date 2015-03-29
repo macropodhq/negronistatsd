@@ -11,12 +11,12 @@ import (
 
 // Middleware is a middleware handler that logs the request as it goes in and the response as it goes out.
 type Middleware struct {
-	StatsdClient *statsd.Client
+	StatsdClient statsd.Statter
 	// Name is the name of the application as recorded in latency metrics
 }
 
 // NewMiddleware returns a new *Middleware, yay!
-func NewMiddleware(statsd *statsd.Client) *Middleware {
+func NewMiddleware(statsd statsd.Statter) *Middleware {
 	return &Middleware{StatsdClient: statsd}
 }
 
